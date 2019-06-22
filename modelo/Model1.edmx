@@ -1,0 +1,234 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="citadorModel.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.5" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="autor">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nome" Type="varchar" MaxLength="45" />
+          <Property Name="sobrenome" Type="varchar" MaxLength="45" />
+        </EntityType>
+        <EntityType Name="autor_has_obra">
+          <Key>
+            <PropertyRef Name="autor_id" />
+            <PropertyRef Name="obra_id" />
+          </Key>
+          <Property Name="autor_id" Type="int" Nullable="false" />
+          <Property Name="obra_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="citacao">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="conteudo" Type="text" />
+          <Property Name="obra_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="obra">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="titulo" Type="varchar" MaxLength="100" />
+          <Property Name="editora" Type="varchar" MaxLength="100" />
+          <Property Name="local_pub" Type="varchar" MaxLength="100" />
+          <Property Name="ano_pub" Type="date" />
+          <Property Name="volume" Type="int" />
+          <Property Name="edicao" Type="int" />
+          <Property Name="pag" Type="int" />
+        </EntityType>
+        <Association Name="fk_autor_has_obra_autor">
+          <End Role="autor" Type="Self.autor" Multiplicity="1" />
+          <End Role="autor_has_obra" Type="Self.autor_has_obra" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="autor">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="autor_has_obra">
+              <PropertyRef Name="autor_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_autor_has_obra_obra1">
+          <End Role="obra" Type="Self.obra" Multiplicity="1" />
+          <End Role="autor_has_obra" Type="Self.autor_has_obra" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="obra">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="autor_has_obra">
+              <PropertyRef Name="obra_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_citacao_obra1">
+          <End Role="obra" Type="Self.obra" Multiplicity="1" />
+          <End Role="citacao" Type="Self.citacao" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="obra">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="citacao">
+              <PropertyRef Name="obra_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="citadorModelStoreContainer">
+          <EntitySet Name="autor" EntityType="Self.autor" Schema="citador" store:Type="Tables" />
+          <EntitySet Name="autor_has_obra" EntityType="Self.autor_has_obra" Schema="citador" store:Type="Tables" />
+          <EntitySet Name="citacao" EntityType="Self.citacao" Schema="citador" store:Type="Tables" />
+          <EntitySet Name="obra" EntityType="Self.obra" Schema="citador" store:Type="Tables" />
+          <AssociationSet Name="fk_autor_has_obra_autor" Association="Self.fk_autor_has_obra_autor">
+            <End Role="autor" EntitySet="autor" />
+            <End Role="autor_has_obra" EntitySet="autor_has_obra" />
+          </AssociationSet>
+          <AssociationSet Name="fk_autor_has_obra_obra1" Association="Self.fk_autor_has_obra_obra1">
+            <End Role="obra" EntitySet="obra" />
+            <End Role="autor_has_obra" EntitySet="autor_has_obra" />
+          </AssociationSet>
+          <AssociationSet Name="fk_citacao_obra1" Association="Self.fk_citacao_obra1">
+            <End Role="obra" EntitySet="obra" />
+            <End Role="citacao" EntitySet="citacao" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="citadorModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="autor">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nome" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="sobrenome" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="obra" Relationship="Self.autor_has_obra" FromRole="autor" ToRole="obra" />
+        </EntityType>
+        <EntityType Name="citacao">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="conteudo" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
+          <Property Name="obra_id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="obra" Relationship="Self.fk_citacao_obra1" FromRole="citacao" ToRole="obra" />
+        </EntityType>
+        <EntityType Name="obra">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="titulo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="editora" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="local_pub" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ano_pub" Type="DateTime" />
+          <Property Name="volume" Type="Int32" />
+          <Property Name="edicao" Type="Int32" />
+          <NavigationProperty Name="citacao" Relationship="Self.fk_citacao_obra1" FromRole="obra" ToRole="citacao" />
+          <NavigationProperty Name="autor" Relationship="Self.autor_has_obra" FromRole="obra" ToRole="autor" />
+          <Property Name="pag" Type="Int32" Nullable="true" />
+        </EntityType>
+        <Association Name="fk_citacao_obra1">
+          <End Role="obra" Type="Self.obra" Multiplicity="1" />
+          <End Role="citacao" Type="Self.citacao" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="obra">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="citacao">
+              <PropertyRef Name="obra_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="autor_has_obra">
+          <End Role="autor" Type="Self.autor" Multiplicity="*" />
+          <End Role="obra" Type="Self.obra" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="citadorDoisEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="autor" EntityType="Self.autor" />
+          <EntitySet Name="citacao" EntityType="Self.citacao" />
+          <EntitySet Name="obra" EntityType="Self.obra" />
+          <AssociationSet Name="fk_citacao_obra1" Association="Self.fk_citacao_obra1">
+            <End Role="obra" EntitySet="obra" />
+            <End Role="citacao" EntitySet="citacao" />
+          </AssociationSet>
+          <AssociationSet Name="autor_has_obra" Association="Self.autor_has_obra">
+            <End Role="autor" EntitySet="autor" />
+            <End Role="obra" EntitySet="obra" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="citadorModelStoreContainer" CdmEntityContainer="citadorDoisEntities">
+          <EntitySetMapping Name="autor">
+            <EntityTypeMapping TypeName="citadorModel.autor">
+              <MappingFragment StoreEntitySet="autor">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="nome" ColumnName="nome" />
+                <ScalarProperty Name="sobrenome" ColumnName="sobrenome" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="citacao">
+            <EntityTypeMapping TypeName="citadorModel.citacao">
+              <MappingFragment StoreEntitySet="citacao">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="conteudo" ColumnName="conteudo" />
+                <ScalarProperty Name="obra_id" ColumnName="obra_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="obra">
+            <EntityTypeMapping TypeName="citadorModel.obra">
+              <MappingFragment StoreEntitySet="obra">
+                <ScalarProperty Name="pag" ColumnName="pag" />
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="titulo" ColumnName="titulo" />
+                <ScalarProperty Name="editora" ColumnName="editora" />
+                <ScalarProperty Name="local_pub" ColumnName="local_pub" />
+                <ScalarProperty Name="ano_pub" ColumnName="ano_pub" />
+                <ScalarProperty Name="volume" ColumnName="volume" />
+                <ScalarProperty Name="edicao" ColumnName="edicao" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="autor_has_obra" TypeName="citadorModel.autor_has_obra" StoreEntitySet="autor_has_obra">
+            <EndProperty Name="autor">
+              <ScalarProperty Name="id" ColumnName="autor_id" />
+            </EndProperty>
+            <EndProperty Name="obra">
+              <ScalarProperty Name="id" ColumnName="obra_id" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

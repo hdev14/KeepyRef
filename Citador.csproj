@@ -1,0 +1,244 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{43C8C1CE-2141-4FD8-A4D9-5A1246B4A9BA}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>Citador</RootNamespace>
+    <AssemblyName>Citador</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AutoresControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="AutoresControl.Designer.cs">
+      <DependentUpon>AutoresControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CadastroCitacao.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CadastroCitacao.Designer.cs">
+      <DependentUpon>CadastroCitacao.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CadastroAutor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CadastroAutor.Designer.cs">
+      <DependentUpon>CadastroAutor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CadastroObra.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CadastroObra.Designer.cs">
+      <DependentUpon>CadastroObra.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CitacoesControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CitacoesControl.Designer.cs">
+      <DependentUpon>CitacoesControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Classes\AtributosObra.cs" />
+    <Compile Include="Classes\AutorObra.cs" />
+    <Compile Include="Classes\FormatarDadosDeLivro.cs" />
+    <Compile Include="Classes\ReferenciaLivro.cs" />
+    <Compile Include="CRUD\Autor.cs" />
+    <Compile Include="CRUD\Citacao.cs" />
+    <Compile Include="CRUD\Obra.cs" />
+    <Compile Include="EditarAutor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EditarAutor.Designer.cs">
+      <DependentUpon>EditarAutor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EditarCitacao.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EditarCitacao.Designer.cs">
+      <DependentUpon>EditarCitacao.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EditarObra.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EditarObra.Designer.cs">
+      <DependentUpon>EditarObra.cs</DependentUpon>
+    </Compile>
+    <Compile Include="modelo\autor.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="modelo\citacao.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="modelo\Model1.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="modelo\Model1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="modelo\Model1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="modelo\obra.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ObrasControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ObrasControl.Designer.cs">
+      <DependentUpon>ObrasControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Principal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Principal.Designer.cs">
+      <DependentUpon>Principal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PrincipalControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PrincipalControl.Designer.cs">
+      <DependentUpon>PrincipalControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="AutoresControl.resx">
+      <DependentUpon>AutoresControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CadastroCitacao.resx">
+      <DependentUpon>CadastroCitacao.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CadastroAutor.resx">
+      <DependentUpon>CadastroAutor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CadastroObra.resx">
+      <DependentUpon>CadastroObra.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CitacoesControl.resx">
+      <DependentUpon>CitacoesControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EditarAutor.resx">
+      <DependentUpon>EditarAutor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EditarCitacao.resx">
+      <DependentUpon>EditarCitacao.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EditarObra.resx">
+      <DependentUpon>EditarObra.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ObrasControl.resx">
+      <DependentUpon>ObrasControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Principal.resx">
+      <DependentUpon>Principal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PrincipalControl.resx">
+      <DependentUpon>PrincipalControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <EntityDeploy Include="modelo\Model1.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Model1.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="modelo\Model1.edmx.diagram">
+      <DependentUpon>Model1.edmx</DependentUpon>
+    </None>
+    <None Include="packages.config" />
+    <None Include="Properties\DataSources\Citador.modelo.autor.datasource" />
+    <None Include="Properties\DataSources\Citador.modelo.obra.datasource" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="imagem\add-symbol1.png" />
+    <Content Include="imagem\border-b.png" />
+    <Content Include="imagem\border-t.png" />
+    <Content Include="imagem\clear-button.png" />
+    <Content Include="imagem\clear-button1.png" />
+    <Content Include="imagem\logo.png" />
+    <Content Include="imagem\pencil-edit-button.png" />
+    <Content Include="imagem\pencil-edit-button1.png" />
+    <Content Include="modelo\Model1.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Model1.edmx</DependentUpon>
+      <LastGenOutput>Model1.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="modelo\Model1.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Model1.edmx</DependentUpon>
+      <LastGenOutput>Model1.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
